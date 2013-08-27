@@ -1,4 +1,4 @@
-Source: android-adt-installer
+Source: android-sdk-installer
 Section: admin
 Priority: optional
 Maintainer: Luis Antonio Garcia Gisbert <luisgg@gmail.com>
