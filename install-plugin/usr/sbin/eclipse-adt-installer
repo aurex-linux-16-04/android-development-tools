@@ -1,0 +1,82 @@
+#!/bin/sh
+# -------
+# File:        android-devel-installer
+# Description: Download and install android developer sdk and tools
+# Author:      Luis Antonio Garcia Gisbert <luisgg@gmail.com> 
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along 
+# with this program; if not, write to the Free Software Foundation, Inc., 
+# 51 Franklin St, Fifth Floor, Boston MA 02110-1301 USA
+# --------
+
+usage(){
+	echo "$(basename "$0") {install|uninstall|user-install}" >&2
+	exit 1
+}
+
+[ "$1" ] || usage
+
+DEST_DIR="/var/lib/adt-bundle"
+BEGIN_ADT_LINE="### BEGIN: ADT settings. Do not edit this lines ####"
+END_ADT_LINE="### END: ADT settings ####"
+
+case "$(dpkg --print-architecture)" in
+	amd64)
+		REQ_URL="http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20130729.zip"
+		;;
+	*)
+		REQ_URL="http://dl.google.com/android/adt/adt-bundle-linux-x86-20130729.zip"
+		;;
+esac
+
+case "$1" in
+	install)
+		if aurex-cache get "$REQ_URL" ; then
+			EXEC_FILE="$(aurex-cache file "$REQ_URL")"
+			if [ "$EXEC_FILE" ] && [ -r "$EXEC_FILE" ] ; then
+				echo "Extracting files"
+				mkdir -p "$DEST_DIR"
+				unzip -d "$DEST_DIR" "$EXEC_FILE"
+				chmod -R +r "$DEST_DIR"
+				find "$DEST_DIR" -type d -exec chmod +rx {} \;
+				SDK_DIR="$(find "$DEST_DIR" -type d -name sdk)"
+				ln -sf "$SDK_DIR" "$DEST_DIR/sdk"
+			fi
+		fi
+		;;
+	uninstall)
+		rm -fr "$DEST_DIR"
+		;;
+	user-install)
+		if [ ! -d "$HOME/android-sdks" ] ; then
+			cp -r "$DEST_DIR/sdk/" $HOME/android-sdks
+		fi
+		if [ -r "$HOME/.bashrc" ] ; then
+			TMP_FILE="$(tempfile)"
+			sed -e "/^$BEGIN_ADT_LINE/,/^$END_ADT_LINE/d" "$HOME/.bashrc" > $TMP_FILE
+			cat <<EOF >> $TMP_FILE
+$BEGIN_ADT_LINE
+export PATH=\$PATH:$HOME/android-sdks/tools
+export PATH=\$PATH:$HOME/android-sdks/platform-tools
+$END_ADT_LINE
+EOF
+			cat $TMP_FILE > "$HOME/.bashrc"
+			rm -f $TMP_FILE
+		fi
+		;;
+	*)
+		usage
+		;;
+esac
+
+exit 0
