@@ -46,7 +46,7 @@ case "$1" in
 			if [ "$EXEC_FILE" ] && [ -r "$EXEC_FILE" ] ; then
 				echo "Extracting files"
 				mkdir -p "$DEST_DIR"
-				unzip -d "$DEST_DIR" "$EXEC_FILE"
+				unzip -o -d "$DEST_DIR" "$EXEC_FILE"
 				chmod -R +r "$DEST_DIR"
 				find "$DEST_DIR" -type d -exec chmod +rx {} \;
 				SDK_DIR="$(find "$DEST_DIR" -type d -name sdk)"
