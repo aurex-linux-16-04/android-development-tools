@@ -1,0 +1,19 @@
+Source: android-adt-installer
+Section: admin
+Priority: optional
+Maintainer: Luis Antonio Garcia Gisbert <luisgg@gmail.com>
+Build-Depends: debhelper (>= 7.0)
+Standards-Version: 3.8.4
+
+Package: android-developer-tools
+Architecture: all
+Depends: ${misc:Depends}, aurex-cache, oracle-java7-installer
+Description: android developer tools loader package for aurex
+ This package downloads and installs android SDK Tools, Platform-tools,
+ android platform and latest android image for the emulator
+
+Package: eclipse-adt-plugin
+Architecture: all
+Depends: ${misc:Depends}, aurex-cache, oracle-java7-installer, android-developer-tools, eclipse-jee-installer | eclipse-juno-sr2 | eclipse-kepler
+Description: eclipse ADT plugin loader package for aurex
+ This package downloads and installs eclipse ADT plugin

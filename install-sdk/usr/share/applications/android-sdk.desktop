@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Android SDK Manager
+Type=Application
+Exec=android-sdk-manager
+Terminal=false
+Icon=/usr/share/android-sdk-installer/android.svg
+Comment=Android SDK Manager
+NoDisplay=false
+Categories=Application;Development;Java;IDE

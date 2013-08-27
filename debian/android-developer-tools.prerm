@@ -1,0 +1,5 @@
+#!/bin/sh
+
+android-devel-installer uninstall
+#DEBHELPER#
+
