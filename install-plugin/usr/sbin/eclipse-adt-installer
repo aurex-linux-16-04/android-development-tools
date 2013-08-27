@@ -1,6 +1,6 @@
 #!/bin/sh
 # -------
-# File:        android-devel-installer
+# File:        eclipse-adt-installer
 # Description: Download and install android developer sdk and tools
 # Author:      Luis Antonio Garcia Gisbert <luisgg@gmail.com> 
 # 
@@ -53,14 +53,27 @@ case "$1" in
 	user-install)
 		[ "$2" ] || usage
 		ECLIPSE_CMD="$2"
-		# TODO: check previous run ...
+		# check previous run ...
+		[ ! -r "$HOME/.config/aurex/eclipse-adt.done" ] || exit 0
+		rc=1
 		if android-sdk-installer ; then
 			# Most of the magic code has been "stolen" from:
 			# http://stackoverflow.com/questions/7163970/how-do-you-automate-the-installation-of-eclipse-plugins-with-command-line
-			# Thanks a lot samb, (http://stackoverflow.com/users/446302/samb)
+			# Thanks a lot, samb (http://stackoverflow.com/users/446302/samb)
 			
-			# 1. first list all IU's found in the plugin repository
-			$ECLIPSE_CMD -nosplash -application org.eclipse.equinox.p2.director -repository
+			# 1. first list all IU's found in the plugin repository, and generate the required "-installIU" string command parameter
+			IU_LIST="$($ECLIPSE_CMD -nosplash -application org.eclipse.equinox.p2.director -repository file://$DEST_DIR -l |sed -ne "/^.*=.*--[[:digit:]]\+/{s%=.*$%%;s%^%-installIU %;p}" |tr "\n" " ")"
+			# 2. install all IU's
+			if [ "$IU_LIST" ] ; then
+				rc=0
+				$ECLIPSE_CMD -nosplash -application org.eclipse.equinox.p2.director -repository file://$DEST_DIR $IU_LIST || rc=2
+			fi
+		fi
+		if [ $rc -eq 0 ] ; then
+			mkdir -p "$HOME/.config/aurex/"
+			dpkg -s eclipse-adt-plugin |sed -ne "/^Version:/{s%^.*:[[:blank:]]*%%;p}" > "$HOME/.config/aurex/eclipse-adt.done"
+		else
+			die "Error installing eclipse ADT plugin"
 		fi
 		;;
 	*)
