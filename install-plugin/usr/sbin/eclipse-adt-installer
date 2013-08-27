@@ -19,25 +19,22 @@
 # 51 Franklin St, Fifth Floor, Boston MA 02110-1301 USA
 # --------
 
-usage(){
-	echo "$(basename "$0") {install|uninstall|user-install}" >&2
+die(){
+	echo "$1" >&2
 	exit 1
+}
+
+usage(){
+	die "Usage: $(basename "$0") {install|uninstall}\n\
+       $(basename "$0") user-install ECLIPSE_BINARY_EXECUTABLE"
 }
 
 [ "$1" ] || usage
 
-DEST_DIR="/var/lib/adt-bundle"
+DEST_DIR="/var/lib/eclipse-adt-plugin"
 BEGIN_ADT_LINE="### BEGIN: ADT settings. Do not edit this lines ####"
 END_ADT_LINE="### END: ADT settings ####"
-
-case "$(dpkg --print-architecture)" in
-	amd64)
-		REQ_URL="http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20130729.zip"
-		;;
-	*)
-		REQ_URL="http://dl.google.com/android/adt/adt-bundle-linux-x86-20130729.zip"
-		;;
-esac
+REQ_URL="http://dl.google.com/android/ADT-22.0.5.zip"
 
 case "$1" in
 	install)
@@ -46,11 +43,7 @@ case "$1" in
 			if [ "$EXEC_FILE" ] && [ -r "$EXEC_FILE" ] ; then
 				echo "Extracting files"
 				mkdir -p "$DEST_DIR"
-				unzip -d "$DEST_DIR" "$EXEC_FILE"
-				chmod -R +r "$DEST_DIR"
-				find "$DEST_DIR" -type d -exec chmod +rx {} \;
-				SDK_DIR="$(find "$DEST_DIR" -type d -name sdk)"
-				ln -sf "$SDK_DIR" "$DEST_DIR/sdk"
+				unzip -o -d "$DEST_DIR" "$EXEC_FILE"
 			fi
 		fi
 		;;
@@ -58,20 +51,16 @@ case "$1" in
 		rm -fr "$DEST_DIR"
 		;;
 	user-install)
-		if [ ! -d "$HOME/android-sdks" ] ; then
-			cp -r "$DEST_DIR/sdk/" $HOME/android-sdks
-		fi
-		if [ -r "$HOME/.bashrc" ] ; then
-			TMP_FILE="$(tempfile)"
-			sed -e "/^$BEGIN_ADT_LINE/,/^$END_ADT_LINE/d" "$HOME/.bashrc" > $TMP_FILE
-			cat <<EOF >> $TMP_FILE
-$BEGIN_ADT_LINE
-export PATH=\$PATH:$HOME/android-sdks/tools
-export PATH=\$PATH:$HOME/android-sdks/platform-tools
-$END_ADT_LINE
-EOF
-			cat $TMP_FILE > "$HOME/.bashrc"
-			rm -f $TMP_FILE
+		[ "$2" ] || usage
+		ECLIPSE_CMD="$2"
+		# TODO: check previous run ...
+		if android-sdk-installer ; then
+			# Most of the magic code has been "stolen" from:
+			# http://stackoverflow.com/questions/7163970/how-do-you-automate-the-installation-of-eclipse-plugins-with-command-line
+			# Thanks a lot samb, (http://stackoverflow.com/users/446302/samb)
+			
+			# 1. first list all IU's found in the plugin repository
+			$ECLIPSE_CMD -nosplash -application org.eclipse.equinox.p2.director -repository
 		fi
 		;;
 	*)
