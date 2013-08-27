@@ -56,7 +56,7 @@ case "$1" in
 		# check previous run ...
 		[ ! -r "$HOME/.config/aurex/eclipse-adt.done" ] || exit 0
 		rc=1
-		if android-sdk-installer ; then
+		if android-sdk-installer user-install ; then
 			# Most of the magic code has been "stolen" from:
 			# http://stackoverflow.com/questions/7163970/how-do-you-automate-the-installation-of-eclipse-plugins-with-command-line
 			# Thanks a lot, samb (http://stackoverflow.com/users/446302/samb)
