@@ -1,5 +1,0 @@
-#!/bin/sh
-
-eclipse-adt-installer  install
-#DEBHELPER#
-
