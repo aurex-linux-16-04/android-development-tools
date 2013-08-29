@@ -1,3 +1,9 @@
+android-sdk-installer (22.0.5+20130729) precise; urgency=low
+
+  * New version number schema
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Thu, 29 Aug 2013 11:27:24 +0200
+
 android-sdk-installer (0.3) precise; urgency=low
 
   * Added user-unistall feature to android-sdk-installer
