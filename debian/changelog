@@ -1,3 +1,9 @@
+android-sdk-installer (0.3) precise; urgency=low
+
+  * Added user-unistall feature to android-sdk-installer
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Thu, 29 Aug 2013 10:34:24 +0200
+
 android-sdk-installer (0.2) precise; urgency=low
 
   * eclipse-adt-plugin binary package moved to eclipse-jee-installer

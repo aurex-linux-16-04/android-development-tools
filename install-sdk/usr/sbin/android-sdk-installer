@@ -20,7 +20,7 @@
 # --------
 
 usage(){
-	echo "$(basename "$0") {install|uninstall|user-install}" >&2
+	echo "$(basename "$0") {install|uninstall|user-install|user-unistall}" >&2
 	exit 1
 }
 
@@ -72,6 +72,12 @@ $END_ADT_LINE
 EOF
 			cat $TMP_FILE > "$HOME/.bashrc"
 			rm -f $TMP_FILE
+		fi
+		;;
+	user-uninstall)
+		rm -fr "$HOME/android-sdks" ]
+		if [ -r "$HOME/.bashrc" ] ; then
+			sed -i -e "/^$BEGIN_ADT_LINE/,/^$END_ADT_LINE/d" "$HOME/.bashrc"
 		fi
 		;;
 	*)
