@@ -19,5 +19,7 @@
 # 51 Franklin St, Fifth Floor, Boston MA 02110-1301 USA
 # --------
 
-android-sdk-installer user-install
+if [ ! -x "$HOME/android-sdks/tools/android" ] ; then
+	android-sdk-installer user-install |yad --progress-text="Android SDK" --progress --auto-kill --auto-close --pulsate --percentage=25  --title=Install
+fi
 exec $HOME/android-sdks/tools/android "$@"
