@@ -7,7 +7,7 @@ Standards-Version: 3.8.4
 
 Package: android-sdk-installer
 Architecture: all
-Depends: ${misc:Depends}, aurex-cache, oracle-java7-installer, yad
+Depends: ${misc:Depends}, aurex-cache, oracle-java8-installer, yad
 Description: android developer tools loader package for aurex
  This package downloads and installs android SDK Tools, Platform-tools,
  android platform and latest android image for the emulator
