@@ -1,3 +1,10 @@
+android-sdk-installer (23.0.2+20140702+aurex1) trusty; urgency=medium
+
+  * New upstream release
+  * Rebuild for aurex 14.04
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Fri, 05 Sep 2014 22:57:56 +0200
+
 android-sdk-installer (22.0.5+20130729+aurex1) precise; urgency=low
 
   * Use yad for user feedback

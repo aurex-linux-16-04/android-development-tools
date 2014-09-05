@@ -32,10 +32,10 @@ END_ADT_LINE="### END: ADT settings ####"
 
 case "$(dpkg --print-architecture)" in
 	amd64)
-		REQ_URL="http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20130729.zip"
+		REQ_URL="https://dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip"
 		;;
 	*)
-		REQ_URL="http://dl.google.com/android/adt/adt-bundle-linux-x86-20130729.zip"
+		REQ_URL="https://dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip"
 		;;
 esac
 
