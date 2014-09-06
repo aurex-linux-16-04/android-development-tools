@@ -1,3 +1,9 @@
+android-sdk-installer (23.0.2+20140702+aurex2) trusty; urgency=medium
+
+  * Option user-install updated
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Sat, 06 Sep 2014 19:25:21 +0200
+
 android-sdk-installer (23.0.2+20140702+aurex1) trusty; urgency=medium
 
   * New upstream release

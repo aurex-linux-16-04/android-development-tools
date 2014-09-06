@@ -60,18 +60,18 @@ case "$1" in
 	user-install)
 		if [ ! -d "$HOME/android-sdks" ] ; then
 			cp -r "$DEST_DIR/sdk/" $HOME/android-sdks
-		fi
-		if [ -r "$HOME/.bashrc" ] ; then
-			TMP_FILE="$(tempfile)"
-			sed -e "/^$BEGIN_ADT_LINE/,/^$END_ADT_LINE/d" "$HOME/.bashrc" > $TMP_FILE
-			cat <<EOF >> $TMP_FILE
+			if [ -r "$HOME/.bashrc" ] ; then
+				TMP_FILE="$(tempfile)"
+				sed -e "/^$BEGIN_ADT_LINE/,/^$END_ADT_LINE/d" "$HOME/.bashrc" > $TMP_FILE
+				cat <<EOF >> $TMP_FILE
 $BEGIN_ADT_LINE
 export PATH=\$PATH:$HOME/android-sdks/tools
 export PATH=\$PATH:$HOME/android-sdks/platform-tools
 $END_ADT_LINE
 EOF
-			cat $TMP_FILE > "$HOME/.bashrc"
-			rm -f $TMP_FILE
+				cat $TMP_FILE > "$HOME/.bashrc"
+				rm -f $TMP_FILE
+			fi
 		fi
 		;;
 	user-uninstall)
