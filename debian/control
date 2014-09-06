@@ -1,13 +1,27 @@
-Source: android-sdk-installer
+Source: android-development-tools
 Section: admin
 Priority: optional
 Maintainer: Luis Antonio Garcia Gisbert <luisgg@gmail.com>
 Build-Depends: debhelper (>= 7.0)
 Standards-Version: 3.8.4
 
+Package: android-devel-downloader
+Architecture: all
+Depends: ${misc:Depends}, aurex-cache, yad
+Description: android developer tools loader package for aurex
+ This package downloads required files for android SDK and 
+ android Studio development Tools
+
 Package: android-sdk-installer
 Architecture: all
-Depends: ${misc:Depends}, aurex-cache, oracle-java8-installer, yad
-Description: android developer tools loader package for aurex
+Depends: ${misc:Depends}, android-devel-downloader, oracle-java8-installer, yad
+Description: android SDK Tools loader package for aurex
  This package downloads and installs android SDK Tools, Platform-tools,
  android platform and latest android image for the emulator
+
+Package: android-studio-installer
+Architecture: all
+Depends: ${misc:Depends}, android-devel-downloader, oracle-java8-installer, yad
+Description: android Studio developer tools loader package for aurex
+ This package downloads and installs android Studio, the development
+ environment based on IntelliJ IDEAandroid

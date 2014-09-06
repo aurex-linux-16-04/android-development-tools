@@ -5,6 +5,10 @@ Upstream-Source: https://github.com/luisgg/
 Files: *
 Copyright: Copyright 2013 Luis Antonio Garcia Gisbert <luisgg@gmail.com>
 License: GPL-3+
+
+Files: install-studio/usr/share/android-development-tools/android-studio.svg
+Copyright:  Copyright 2014 Sam Hewitt <hewittsamuel@gmail.com>
+License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) License
  
 License: GPL-3+
 
@@ -15,3 +19,9 @@ License: GPL-3+
    on any Debian system you can find a copy of the newest GNU GPL at
    '/usr/share/common-licenses/GPL'
 
+
+License: CC BY-SA 4.0
+
+   To view a copy of this license, visit
+   http://creativecommons.org/licenses/by-sa/4.0/legalcode or send a letter to
+   Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.

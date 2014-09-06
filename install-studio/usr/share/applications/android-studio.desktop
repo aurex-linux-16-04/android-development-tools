@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Android Studio
+Type=Application
+Exec=android-studio
+Terminal=false
+Icon=/usr/share/android-development-tools/android-studio.svg
+Comment=Android Studio
+NoDisplay=false
+Categories=Application;Development;Java;IDE

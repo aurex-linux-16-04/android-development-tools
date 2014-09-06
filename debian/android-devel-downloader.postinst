@@ -1,0 +1,5 @@
+#!/bin/sh
+
+android-devel-download install
+#DEBHELPER#
+

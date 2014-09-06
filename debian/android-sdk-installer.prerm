@@ -1,5 +1,0 @@
-#!/bin/sh
-
-android-sdk-installer uninstall
-#DEBHELPER#
-

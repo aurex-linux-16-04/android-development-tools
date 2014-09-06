@@ -1,3 +1,10 @@
+android-development-tools (23.0.2+20140702+aurex3) trusty; urgency=medium
+
+  * Source package renamed
+  * Added Android Studio package
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Sun, 07 Sep 2014 01:51:43 +0200
+
 android-sdk-installer (23.0.2+20140702+aurex2) trusty; urgency=medium
 
   * Option user-install updated
