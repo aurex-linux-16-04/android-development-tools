@@ -1,3 +1,15 @@
+android-development-tools (26.0.2+20170908) xenial; urgency=medium
+
+  * New upstream release
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Fri, 08 Sep 2017 18:34:23 +0200
+
+android-development-tools (24.4.1+20160915) xenial; urgency=medium
+
+  * New upstream release
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Thu, 15 Sep 2016 13:43:40 +0200
+
 android-development-tools (23.0.2+20140702+aurex3) trusty; urgency=medium
 
   * Source package renamed

@@ -27,8 +27,12 @@ usage(){
 [ "$1" ] || usage
 
 . /usr/share/android-development-tools/android-development-common
-REQ_URL="https://dl.google.com/android/studio/install/0.8.6/android-studio-bundle-135.1339820-linux.tgz"
+#REQ_URL="https://dl.google.com/android/studio/install/0.8.6/android-studio-bundle-135.1339820-linux.tgz"
 
+# current ide
+REQ_URL="https://dl.google.com/dl/android/studio/ide-zips/2.3.3.0/android-studio-ide-162.4069837-linux.zip"
+#current SDK
+#REQ_URL="https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip"
 case "$1" in
 	install)
 		if aurex-cache get "$REQ_URL" ; then
@@ -36,7 +40,8 @@ case "$1" in
 			if [ "$EXEC_FILE" ] && [ -r "$EXEC_FILE" ] ; then
 				echo "Extracting files"
 				mkdir -p "$DEST_DIR"
-				tar -C "$DEST_DIR" -xzf "$EXEC_FILE"
+				#tar -C "$DEST_DIR" -xzf "$EXEC_FILE"
+				unzip "$EXEC_FILE" -d "$DEST_DIR"
 				chmod -R +r "$DEST_DIR"
 				find "$DEST_DIR" -type d -exec chmod +rx {} \;
 				SDK_DIR="$(find "$DEST_DIR" -type d -name sdk)"
