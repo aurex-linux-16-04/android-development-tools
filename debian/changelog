@@ -1,3 +1,9 @@
+android-development-tools (26.0.2+20170908+aurex1) xenial; urgency=medium
+
+  * Added alternative depends on oracle-java9-installer
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Thu, 10 May 2018 13:55:47 +0200
+
 android-development-tools (26.0.2+20170908) xenial; urgency=medium
 
   * New upstream release
