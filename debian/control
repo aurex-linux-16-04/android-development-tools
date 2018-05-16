@@ -14,14 +14,14 @@ Description: android developer tools loader package for aurex
 
 Package: android-sdk-installer
 Architecture: all
-Depends: ${misc:Depends}, android-devel-downloader, oracle-java8-installer | oracle-java9-installer, yad
+Depends: ${misc:Depends}, android-devel-downloader, oracle-java8-installer|oracle-java9-installer|oracle-java10-installer, yad
 Description: android SDK Tools loader package for aurex
  This package downloads and installs android SDK Tools, Platform-tools,
  android platform and latest android image for the emulator
 
 Package: android-studio-installer
 Architecture: all
-Depends: ${misc:Depends}, android-devel-downloader, oracle-java8-installer | oracle-java9-installer, yad
+Depends: ${misc:Depends}, android-devel-downloader, oracle-java8-installer|oracle-java9-installer|oracle-java10-installer, yad
 Description: android Studio developer tools loader package for aurex
  This package downloads and installs android Studio, the development
  environment based on IntelliJ IDEAandroid
